@@ -1,9 +1,8 @@
-import json
 import re
 import sys
 import os
-sys.path.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), '../lib/python'))
-from navs import *
+#sys.path.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), '../lib/python'))
+#from navs import Variation
 #get RS attribute (rsat) from JSON 
 class rsatt(object): 
 
@@ -73,19 +72,19 @@ class rsatt(object):
                             mrna = r['codon_aligned_transcript_change']
                             protein = r['protein']['variant']['spdi']
                             allele_info.append([rs['id'], a['allele'], gene_name,
-                                             gene_symbol, mrna['seq_id'],
-                                             mrna['deleted_sequence'],
-                                             str(mrna['position']),
-                                             mrna['deleted_sequence'],
-                                             protein['seq_id'],
-                                             protein['deleted_sequence'],
-                                             str(protein['position']),
-                                             protein['deleted_sequence']])
+                                            gene_symbol, mrna['seq_id'],
+                                            mrna['deleted_sequence'],
+                                            str(mrna['position']),
+                                            mrna['deleted_sequence'],
+                                            protein['seq_id'],
+                                            protein['deleted_sequence'],
+                                            str(protein['position']),
+                                            protein['deleted_sequence']])
 
         return(allele_info)
         
             
-     def clinical_significance(self, rs_obj):
+    def clinical_significance(self, rs_obj):
         '''
         rs clinical significance
         '''
@@ -107,7 +106,7 @@ class rsatt(object):
         for alleleinfo in info['primary_snapshot_data']['placements_with_allele']:
             # has top level placement (ptlp) and assembly info
             if alleleinfo['is_ptlp'] and \
-               len(alleleinfo['placement_annot']['seq_id_traits_by_assembly']) > 0:
+                len(alleleinfo['placement_annot']['seq_id_traits_by_assembly']) > 0:
                 # get genomic placement and alleles
                 for a in alleleinfo['alleles']:
                     spdi = a['allele']['spdi']
